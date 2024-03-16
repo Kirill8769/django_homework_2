@@ -4,10 +4,11 @@ from .models import Product, Contact
 
 
 def index(request):
-    data = Product.objects.all().order_by('-id')[:5]
-    for count, item in enumerate(data, start=1):
+    data_homework = Product.objects.all().order_by('-id')[:5]
+    for count, item in enumerate(data_homework, start=1):
         print(f"{count}. {item}")
-    return render(request, 'catalog/index.html')
+    products = Product.objects.all()
+    return render(request, 'catalog/index.html', {'products': products})
 
 
 def contacts(request):
