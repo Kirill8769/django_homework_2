@@ -1,0 +1,11 @@
+[
+{
+    "model": "catalog.contact",
+    "pk": 1,
+    "fields": {
+        "country": "Россия",
+        "city": "Москва",
+        "address": "Красная площадь"
+    }
+}
+]

@@ -32,3 +32,17 @@ class Product(models.Model):
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
         ordering = ('-created_at', )
+
+
+class Contact(models.Model):
+    country = models.CharField(max_length=100, verbose_name='страна')
+    city = models.CharField(max_length=100, verbose_name='город')
+    address = models.CharField(max_length=250, verbose_name='адрес')
+
+    def __str__(self):
+        return f"{self.country} {self.city}"
+
+    class Meta:
+        verbose_name = 'контакт'
+        verbose_name_plural = 'контакты'
+        ordering = ('country', 'city', )
