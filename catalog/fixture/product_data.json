@@ -1,0 +1,41 @@
+[
+{
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+        "name": "Хлеб чёрный",
+        "description": "Хлеб чёрный, классический",
+        "image": "products_photo/d_hleb.jpg",
+        "category": null,
+        "price": 25.0,
+        "created_at": "2024-03-16T15:01:30.483Z",
+        "updated_at": "2024-03-16T15:01:30.483Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+        "name": "Святой источник",
+        "description": "Вода из артезианских источников, негазированная",
+        "image": "",
+        "category": null,
+        "price": 36.0,
+        "created_at": "2024-03-16T15:02:35.892Z",
+        "updated_at": "2024-03-16T15:02:35.892Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+        "name": "Кола",
+        "description": "Импортозамещённая кола, сильногазированная",
+        "image": "",
+        "category": null,
+        "price": 60.0,
+        "created_at": "2024-03-16T15:03:28.136Z",
+        "updated_at": "2024-03-16T15:03:28.136Z"
+    }
+}
+]
