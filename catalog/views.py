@@ -11,6 +11,10 @@ def index(request):
     return render(request, 'catalog/index.html', {'products': products})
 
 
+def product_detail(request):
+    pass
+
+
 def contacts(request):
     data = Contact.objects.last()
     if request.method == "POST":
