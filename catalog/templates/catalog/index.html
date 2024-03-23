@@ -1,17 +1,26 @@
 {% extends 'catalog/base.html' %}
+{% load my_tags %}
 
 {% block content %}
-<div class="row text-center">
-    {% for product in products %}
-    <div class="col-3">
-        <div class="card mb-4 box-shadow">
+<div class="row">
+    {% for object in object_list %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 box-shadow">
             <div class="card-header">
-                <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
+                <h4 class="card-title text-center">{{ object.name }}</h4>
             </div>
-            <div class="card-body">
-                <p>{{ product.description }}</p>
-                <p class="card-title pricing-card-title">Цена: {{ product.price }} руб.</p>
-                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
+            <img class="card-img-top" src="{{ object.image|get_image }}" alt="{{ object.name }}" width="350"
+                 height="200">
+            <div class="card-body mt-3">
+                <p class="card-text mb-0">Категория: {{ object.category }}</p>
+                <p class="card-text mb-0" style="height: 5em; overflow: hidden;">Описание:
+                    {{ object.description|slice:'100' }}{% if object.description|length > 100 %}...{% endif %}</p>
+                <p class="card-text mb-0">Цена: {{ object.price }} руб.</p>
+                <div class="d-flex justify-content-center align-items-center mt-3">
+                    <a href="{% url 'catalog:product_detail' object.pk %}"
+                       class="btn btn-lg btn-primary mx-2">Подробнее</a>
+                    <a href="#" type="button" class="btn btn-lg btn-success mx-2">В корзину</a>
+                </div>
             </div>
         </div>
     </div>

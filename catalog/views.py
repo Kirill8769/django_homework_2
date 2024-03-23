@@ -1,25 +1,33 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Product, Contact
 
 
 def index(request):
-    data_homework = Product.objects.all().order_by('-id')[:5]
-    for count, item in enumerate(data_homework, start=1):
-        print(f"{count}. {item}")
-    products = Product.objects.all()
-    return render(request, 'catalog/index.html', {'products': products})
+    context = {
+        'object_list': Product.objects.all(),
+        'title': 'Главная',
+    }
+    return render(request, 'catalog/index.html', context)
 
 
-def product_detail(request):
-    pass
+def product_detail(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    context = {
+        'object': product,
+        'title': product.name,
+    }
+    return render(request, 'catalog/product_detail.html', context)
 
 
 def contacts(request):
-    data = Contact.objects.last()
+    context = {
+        'contact': Contact.objects.get(pk=1),
+        'title': 'Контакты',
+    }
     if request.method == "POST":
         name = request.POST.get("name")
         phone = request.POST.get("phone")
         message = request.POST.get("message")
         print(f"Новое обращение\nИмя: {name}\nТелефон: {phone}\nСообщение: {message}")
-    return render(request, 'catalog/contacts.html', {"data": data})
+    return render(request, 'catalog/contacts.html', context)

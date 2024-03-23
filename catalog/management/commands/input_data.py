@@ -17,8 +17,8 @@ class Command(BaseCommand):
 
     @staticmethod
     def clear_data():
-        Category.objects.all().delete()
         Product.objects.all().delete()
+        Category.objects.all().delete()
         Contact.objects.all().delete()
 
     @staticmethod
@@ -27,7 +27,12 @@ class Command(BaseCommand):
         objects_to_create = []
         if data:
             for item in data:
-                objects_to_create.append(model(**item['fields']))
+                fields = item['fields']
+                if 'category' in fields:
+                    category_id = fields.pop('category')
+                    category = Category.objects.get(pk=category_id)
+                    fields['category'] = category
+                objects_to_create.append(model(pk=item['pk'], **fields))
             model.objects.bulk_create(objects_to_create)
 
     @staticmethod
