@@ -8,4 +8,4 @@ def get_image(img):
     if img:
         return f'/media/{img}'
     else:
-        return f'/static/no_photo.jpg'
+        return '/static/no_photo.jpg'

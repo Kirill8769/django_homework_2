@@ -3,7 +3,7 @@ import os
 
 from django.core.management.base import BaseCommand
 
-from catalog.models import Category, Product, Contact
+from catalog.models import Category, Contact, Product
 from config import settings
 
 

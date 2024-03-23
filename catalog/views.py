@@ -1,11 +1,21 @@
-from django.shortcuts import render, get_object_or_404
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.shortcuts import get_object_or_404, render
 
-from .models import Product, Contact, Category
+from .models import Category, Contact, Product
 
 
 def index(request):
+    product_list = Product.objects.all()
+    paginator = Paginator(product_list, 6)
+    page = request.GET.get('page')
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
     context = {
-        'object_list': Product.objects.all(),
+        'object_list': products,
         'title': 'Главная',
     }
     return render(request, 'catalog/index.html', context)
