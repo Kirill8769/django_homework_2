@@ -1,0 +1,50 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="my-0 font-weight-normal text-center">Форма товара</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="" class="row" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="col-12 mb-3">
+                            <label for="name" class="form-label">Наименование товара *</label>
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Введите наименование товара" required>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="description" class="form-label">Описание товара *</label>
+                            <textarea name="description" class="form-control" id="description" placeholder="Введите описание товара" required></textarea>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="image" class="form-label">Изображение товара</label>
+                            <input class="form-control" type="file" id="image" name="image">
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="category" class="form-label">Категория товара</label><br>
+                            <select class="form-select" id="category" name="category" aria-label="Select category">
+                                <option selected>Выберите категорию товара</option>
+                                {% for category in categories %}
+                                <option value="{{ category.pk }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="price" class="form-label">Стоимость товара *</label>
+                            <input type="number" step="0.01" name="price" class="form-control" id="price" placeholder="Введите стоимость товара" required>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Сохранить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -13,6 +13,13 @@ psycopg2 = "^2.9.9"
 pillow = "^10.2.0"
 ipython = "^8.22.2"
 
+[tool.poetry.group.lint.dependencies]
+flake8 = "^7.0.0"
+isort = "^5.13.2"
+
+[tool.isort]
+line_length = 119
+
 
 [build-system]
 requires = ["poetry-core"]
